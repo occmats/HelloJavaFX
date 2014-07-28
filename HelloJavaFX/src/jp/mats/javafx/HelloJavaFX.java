@@ -6,12 +6,16 @@
 
 package jp.mats.javafx;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -22,6 +26,7 @@ public class HelloJavaFX extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        /*
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -39,6 +44,22 @@ public class HelloJavaFX extends Application {
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
+        primaryStage.show();
+        */
+        URL file;
+        Parent root;
+        try {
+            file = new File("src/jp/mats/javafx/HelloWorld.fxml").toURI().toURL();
+            root = FXMLLoader.load(file);
+            
+            primaryStage.setTitle("HelloJavaFX");
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(HelloJavaFX.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HelloJavaFX.class.getName()).log(Level.SEVERE, null, ex);
+        }
         primaryStage.show();
     }
 
