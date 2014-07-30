@@ -26,11 +26,8 @@ public class HelloJavaFX extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        URL file;
-        Parent root;
         try {
-            file = new File("src/jp/mats/javafx/HelloWorld.fxml").toURI().toURL();
-            root = FXMLLoader.load(file);
+            Parent root = FXMLLoader.load(getClass().getResource("HelloWorld.fxml"));
             
             primaryStage.setTitle("HelloJavaFX");
             Scene scene = new Scene(root);
